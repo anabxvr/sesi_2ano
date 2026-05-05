@@ -1,93 +1,117 @@
 <?php
-//nomeclatura snake_case
-//Ana Beatriz
+// Ana Beatriz
+// Nomenclatura snake_case
 
-$RESPOSTA = [1, 2, 3, 4, 5];
-$RESPOSTA1 = "";
-$RESPOSTA2 = "SAIR";
+function ler_opcao($mensagem, $opcoes_validas)
+{
+    while (true) {
+        $entrada = readline($mensagem);
+        if (in_array($entrada, $opcoes_validas)) {
+            return $entrada;
+        }
+        echo "Entrada inválida. Tente novamente.\n";
+    }
+}
 
-echo "DIGITE SEU LOGIN: ";
+// AVISO DE PRIVACIDADE [cite: 100]
+echo "AVISO DE PRIVACIDADE:\n";
+echo "Seus dados serão usados apenas para fins educacionais e personalização da experiência.\n\n";
 
-while ($RESPOSTA1 != 5) {
-    echo "----SEJA BEM VINDO----";
-    echo "PARA VERIFICAR A POLITÍCA DE SEGURANÇA DA INFORMAÇÃO COMPLETA, DIGITE 1 ";
-    echo "PARA LER APENAS OS PRICIPAIS TÓPICOS DA POLITÍCA DE SEGURANÇA DA INFORMAÇÃO , DIGITE 2 ";
-    echo "PARA LER APENAS SOBRE OS PILARES FUNDAMENTAIS, DIGITE 3 ";
-    echo "PARA SE INFORMAR SOBRE A LGPD, DIGITE 4 ";
-    echo "SE VOCÊ DESEJA SAIR DO MENU, DIGITE 5";
+$nome = readline("Digite seu nome: ");
+while (empty($nome)) {
+    echo "Nome inválido.\n";
+    $nome = readline("Digite seu nome: ");
+}
 
+$cargo = readline("Digite seu cargo: "); // Corrigido de $carga para $cargo para consistência [cite: 95]
+while (empty($cargo)) {
+    echo "Cargo inválido.\n";
+    $cargo = readline("Digite seu cargo: ");
+}
 
+echo "\nBem-vindo(a), $nome ($cargo)!\n";
 
-    $RESPOSTA1 = readline("ESCOLHA UMA DAS OPÇÕES:");
-    switch ($RESPOSTA1) {
-        case 1:
-            echo "O que é
-A Política Nacional de Segurança da Informação (PNSI) - decreto 12.572, de 4 de agosto de 2025 - é um instrumento normativo do Estado brasileiro que estabelece as diretrizes estratégicas, princípios e objetivos para assegurar a disponibilidade, a integridade, a confidencialidade e a autenticidade da informação no País, de modo a garantir a proteção das informações consideradas relevantes para a segurança nacional, a soberania e o interesse público. A PNSI está na sua 3ª geração e é instrumento essencial para afiançar que os serviços públicos continuem funcionando com segurança, alto nível de proteção dos dados e torne o Brasil cada vez mais preparado para os desafios globais que surgem diariamente no mundo digital.
+$resumo = [];
+$aceitou = false; // Corrigido de 'falso'
 
-----Objetivos----
-Reestruturar os princípios e objetivos da Política Nacional, com foco na gestão de riscos e na construção de uma rede colaborativa e abrangente que orienta como o Governo deve cuidar da segurança da informação;
-Incorporar os normativos emitidos pelo Gabinete de Segurança Institucional da Presidência da República como instrumentos oficiais, fortalecendo o alinhamento com as melhores práticas internacionais;
-Abordar segurança da informação como um tema mais amplo que segurança digital, envolvendo questões de segurança física e de instalações, segurança no tratamento de informações em qualquer meio (físico ou digital), e a necessidade de capacitar e conscientizar constantemente aqueles que atuam no âmbito da Administração Pública Federal;
-Promover maior clareza nas competências dos órgãos envolvidos, bem como nas atribuições dos gestores de segurança da informação;
-Consolidar uma governança moderna, eficiente e integrada, fundamental para enfrentar os desafios contemporâneos que impactam diretamente o Estado e a sociedade
-;Valorizar a cooperação com outros países, uma vez que no mundo digital, os desafios ultrapassam fronteiras; e
-Definir mais claramente as responsabilidades dos órgãos públicos e das pessoas que cuidam da segurança da informação dentro da Administração Pública Federal.
-Resultados esperados
-Consolidação da cultura de segurança da informação no setor público;
-Priorização:
-da proteção de dados pessoais e informações sensíveis;
-da defesa de nossas infraestruturas críticas;
-do desenvolvimento tecnológico;
-da capacitação de profissionais; e
-da cooperação internacional.
-Promoção de ações integradas, reafirmando a soberania nacional e a confiança do cidadão nos serviços prestados pelo Estado brasileiro;
-Disseminação da compreensão de que segurança da informação não é apenas uma questão técnica, mas sim um valor estratégico para o País; e
-Fortalecimento da confiança da população nos serviços públicos e na capacidade do Estado de proteger seus dados e seus direitos.";
+while (true) { // Corrigido de 'enquanto (verdadeiro)'
+
+    echo "\n==== MENU PSI ====\n";
+    echo "1 - Política completa (Conceitos e Diretrizes)\n";
+    echo "2 - Gestão de Acessos e Usuários\n";
+    echo "3 - Pilares Fundamentais (Tríade CIA)\n";
+    echo "4 - Uso Aceitável e Consequências\n";
+    echo "5 - Ver resumo geral de navegação\n";
+    echo "6 - Aceitar política\n";
+    echo "0 - Sair\n";
+
+    $opcao = ler_opcao("Escolha: ", ["0", "1", "2", "3", "4", "5", "6"]);
+
+    switch ($opcao) {
+        case "1":
+            echo "\n--- POLÍTICA DE SEGURANÇA DA INFORMAÇÃO ---\n";
+            echo "A PSI estabelece regras e responsabilidades para proteger ativos de dados[cite: 1].\n";
+            echo "Ela define comportamentos esperados para garantir a confidencialidade, integridade e disponibilidade[cite: 2].\n";
+            $resumo[] = "Definição de PSI";
+            break; // Corrigido de 'quebrar'
+
+        case "2":
+            echo "\n--- GESTÃO DE ACESSOS E USUÁRIOS ---\n";
+            echo "Identificação: Login do usuário[cite: 20].\n";
+            echo "Autenticação: Prova de identidade (senhas, biometria)[cite: 21].\n";
+            echo "Autorização: Permissões concedidas (ler, editar)[cite: 22].\n";
+            echo "Ciclo de vida: Admissão, Mudança de Função e Desligamento[cite: 25, 26, 27].\n";
+            $resumo[] = "Gestão de Acessos";
             break;
-        case 2:
 
-            echo "Principais Tópicos:
-Confidencialidade: Assegura que a informação só seja acessada por pessoas autorizadas.
-Integridade: Garante que a informação seja mantida em seu estado original, protegida contra alterações não autorizadas.
-Disponibilidade: Garante que os dados estejam acessíveis aos usuários autorizados sempre que necessário.
-Autenticidade: Confirma que a informação ou usuário é legítimo (quem diz ser).
-Não-repúdio (ou Irretratabilidade): Impede que alguém negue ter realizado uma ação (como enviar um e-mail ou assinar um documento).";
+        case "3":
+            echo "\n--- PILARES FUNDAMENTAIS (TRÍADE CIA) ---\n";
+            echo "Confidencialidade: Acesso apenas por pessoas autorizadas[cite: 10].\n";
+            echo "Integridade: Informação precisa e não alterada indevidamente[cite: 12].\n";
+            echo "Disponibilidade: Acesso garantido quando necessário[cite: 14].\n";
+            $resumo[] = "Tríade CIA";
             break;
-        case 3:
 
-            echo "Os Pilares Fundamentais 
-Confidencialidade: Garante que a informação seja acessada apenas por pessoas ou sistemas autorizados, evitando vazamentos e uso indevido de dados.
-Integridade: Assegura que os dados sejam preservados, garantindo sua precisão e confiabilidade, prevenindo alterações indevidas ou corrupção da informação.
-Disponibilidade: Garante que a informação esteja acessível aos usuários autorizados no momento em que precisarem dela, evitando interrupções nos sistemas e serviços.";
+        case "4":
+            echo "\n--- USO ACEITÁVEL E CONSEQUÊNCIAS ---\n";
+            echo "Uso Aceitável: Recursos devem ser usados para fins profissionais[cite: 65].\n";
+            echo "Consequências: Sanções incluem advertências, suspensão e demissão por justa causa[cite: 81, 84].\n";
+            $resumo[] = "Uso e Consequências";
             break;
-        case 4:
 
-            echo "A Lei Geral de Protecao de Dados (LGPD, Lei n° 13.(09/2018) e a legislacao
-brasileira que regula o tratamento de dados pessoais físicos ou digitais, visando
-proteger a privacidade e os direitos fundamentais. Ela obriga empresas e órgãos
-públicos a terem transparência e consentimento no uso de informações. Objelvo. Proteger dados pessoais de pessoas lisicas, garanuindo liberdade,
+        case "5":
+            echo "\n--- RESUMO GERAL DA NAVEGAÇÃO ---\n";
+            if (empty($resumo)) {
+                echo "Nenhum conteúdo acessado ainda.\n";
+            } else {
+                foreach ($resumo as $item) { // Corrigido de $ressumo
+                    echo "- $item\n";
+                }
+            }
+            break;
 
-privacidade e autodeterminação informativa.
-Aplicação: Aplica-se a qualquer pessoa jurídica ou física que colete,
-armazene ou processe dados pessoais no Brasil, independente do meio
-(físico ou digital).
+        case "6":
+            $confirm = ler_opcao("Aceita a política? (1-Sim / 2-Não): ", ["1", "2"]);
+            if ($confirm == "1") {
+                echo "Você ACEITOU a política.\n";
+                $aceitou = true;
+            } else {
+                echo "Política NÃO aceita.\n";
+                $aceitou = false;
+            }
+            break;
 
-Dados Pessoais:
-Informações que identificam ou podem identificar uma pessoa (nome, CPF,
-RG, endereço, e-mail, geolocalização).
-Dados Sensiveis: Informacões sobre origem racial/etnica, conviccao religios
-opinião política, saúde, biometria ou vida sexual, exigindo proteção especial.
-Direitos do Titular: O cidadão pode solicitar acesso, correção, eliminação ou
-portabilidade dos seus dados.
-Penalidades: O descumprimento pode gerar multas de até 2% do
-faturamento, limitada a R$ 50 milhões por infração, além de advertências e
-bloqueio de dados.  ";
-            break;
-        case 5:
-            echo "Saindo...";
-            break;
-        default:
-            echo "erro...";
-            break;
+        case "0":
+            echo "\nEncerrando aplicação...\n";
+            echo "Resumo final de tópicos vistos:\n";
+            if (empty($resumo)) {
+                echo "- Nenhum tópico foi lido.\n";
+            } else {
+                foreach (array_unique($resumo) as $item) {
+                    echo "- $item\n";
+                }
+            }
+            echo $aceitou ? "STATUS: O usuário ACEITOU a política[cite: 99].\n" : "STATUS: O usuário NÃO aceitou a política.\n";
+            exit; // Corrigido de 'saída'
     }
 }
